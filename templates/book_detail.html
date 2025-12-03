@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-wrapper">
+
+    <h2>{{ book.title }}</h2>
+
+    <div class="bookCard">
+        <img src="{{ url_for('static', filename='images/books/' + book.image) }}"
+             alt="{{ book.title }}">
+
+        <div class="bookInfo">
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Category:</strong> {{ book.categoryName }}</p>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <p><strong>Price:</strong> ${{ "%.2f"|format(book.price) }}</p>
+        </div>
+    </div>
+
+    <p><a href="/category?categoryId={{ book.categoryId }}">&#8592; Back to category</a></p>
+
+</div>
+{% endblock %}

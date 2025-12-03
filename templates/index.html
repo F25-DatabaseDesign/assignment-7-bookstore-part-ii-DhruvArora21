@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="home-wrapper">
+
+    <h1 class="home-title">Football Bookstore</h1>
+    <h3 class="home-subtitle">Your home for the beautiful game</h3>
+
+    <p class="home-description">
+        Your one-stop shop for everything about football. Explore autobiographies, history of the game,
+        tournament stories, and books about legendary players.
+    </p>
+
+    <div class="categories-grid">
+        {% for category in categories %}
+            <div class="categoryBox centered">
+                <a href="/category?categoryId={{ category.id }}">
+                    <img src="/static/images/categories/{{ category.name|lower }}.jpg"
+                         alt="{{ category.name }}">
+                </a>
+                <p><a href="/category?categoryId={{ category.id }}">{{ category.name }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

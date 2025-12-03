@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Bookstore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+
+
+<header class="site-header">
+    <div class="header-left">
+        <a href="/">
+            <img id="logo" src="{{ url_for('static', filename='images/misc/logo.png') }}" alt="Logo">
+        </a>
+    </div>
+
+    <div class="header-right">
+        <p class="cat-title">Categories</p>
+        {% for category in categories %}
+            <p class="cat-link">
+                <a href="/category?categoryId={{ category.id }}">{{ category.name }}</a>
+            </p>
+        {% endfor %}
+    </div>
+</header>
+
+<div class="search-bar">
+    <form action="{{ url_for('search') }}" method="post" id="searchForm">
+        <input type="text" name="titleSearch" placeholder="Search by book title">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2025 Football Bookstore</p>
+</footer>
+
+</body>
+</html>
+

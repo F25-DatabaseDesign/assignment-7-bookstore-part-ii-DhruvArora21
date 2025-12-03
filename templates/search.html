@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-wrapper">
+    <h2>Search results for "{{ term }}"</h2>
+
+    {% if books|length == 0 %}
+        <p>No books found.</p>
+    {% else %}
+        {% for book in books %}
+            <div class="bookCard">
+                <img src="{{ url_for('static', filename='images/books/' + book.image) }}"
+                     alt="{{ book.title }}">
+                <div class="bookInfo">
+                    <h3>
+                        <a href="{{ url_for('book_detail', book_id=book.id) }}">
+                            {{ book.title }}
+                        </a>
+                    </h3>
+                    <p>by {{ book.author }}</p>
+                    <p>ISBN: {{ book.isbn }}</p>
+                    <p>${{ "%.2f"|format(book.price) }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

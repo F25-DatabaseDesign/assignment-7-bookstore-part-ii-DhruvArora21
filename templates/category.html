@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="categoryContainer">
+
+    <!-- LEFT: category buttons -->
+    <div id="categoryMenu">
+        {% for c in categories %}
+            <a href="/category?category={{ c.id }}">
+                <button class="{% if c.id == selectedCategory %}selectedCategory{% else %}notSelectedCategory{% endif %}">
+                    {{ c.name }}
+                </button>
+            </a>
+        {% endfor %}
+    </div>
+
+   
+    <div id="booksArea">
+        {% for book in books %}
+            <div class="bookCard">
+                <img src="/static/images/books/{{ book.image }}" alt="{{ book.title }}">
+                <div class="bookInfo">
+                    <h3>
+                        <a href="{{ url_for('book_detail', book_id=book.id) }}">
+                            {{ book.title }}
+                        </a>
+                    </h3>
+                    <p>by {{ book.author }}</p>
+                    <p>ISBN: {{ book.isbn }}</p>
+                    <p>${{ "%.2f"|format(book.price) }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
